@@ -73,7 +73,7 @@ flowchart TD
 The search tree for Maximum Weight Clique is notoriously irregular: some subtrees prune within 2 levels, while others explore thousands of branches. A standard range-based chunking scheme would induce severe load imbalance.
 - **Profit-to-Cost Heuristic Sorting**: Prior to subtree distribution, candidate nodes are sorted descending by their efficiency ratio $\frac{P_v}{C_v}$. This prioritizes high-potential nodes early in the search, finding high-quality solutions rapidly.
 - **Interleaved Cyclic Mapping**: Candidate branches are assigned cyclically:
-  $$\text{Target Rank} = \text{task\_id} \pmod{\text{num\_ranks}}$$
+  $$\text{Target Rank} = \text{TaskID} \pmod{\text{NumRanks}}$$
   This distributes heavy and light subtrees uniformly across all MPI processes like dealing a deck of cards, achieving statistical load balance without dynamic work-stealing overhead.
 
 ### 2. Asynchronous Pruning & Bound Propagation

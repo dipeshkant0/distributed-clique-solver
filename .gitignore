@@ -1,0 +1,17 @@
+# Binaries
+mpi_clique
+*.o
+*.so
+
+# Test & runtime files
+sample_graph.txt
+output.txt
+*.out
+
+# Editor / OS files
+.vscode/
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc

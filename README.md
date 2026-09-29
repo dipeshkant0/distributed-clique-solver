@@ -148,17 +148,17 @@ Speedup Scaling (Haswell 16-Core Node)
 
 ```
 .
-├── Makefile                # Compilation & test script
+├── Makefile                # Build and test automation
 ├── .gitignore              # Ignores binaries and generated test graphs
-├── main.cpp                # Core distributed MPI solver
-├── generate_graph.py       # Benchmark graph generator with configurable parameters
-├── verify_clique.py        # Solution validator (checks clique completeness & budget)
-├── report.pdf              # Technical report submitted for course evaluation
-├── MPI_assignment.pdf      # Official problem specification
-├── a3_2025MCS2110.zip      # Submission package archive
-└── a3_2025MCS2110/         # Submission source directory
-    ├── main.cpp
-    └── report.pdf
+├── src/                    # Source code
+│   └── main.cpp            # Core distributed MPI Branch-and-Bound solver
+├── scripts/                # Benchmark & verification tools
+│   ├── generate_graph.py   # Benchmark graph generator with configurable parameters
+│   └── verify_clique.py    # Solution validator (checks clique completeness & budget)
+├── docs/                   # Documentation & reports
+│   ├── report.pdf          # Technical report submitted for course evaluation
+│   └── specification.pdf   # Official problem specification
+└── archive/                # Original submission archive
 ```
 
 ---
@@ -183,7 +183,7 @@ make
 Or compile directly with `mpicxx`:
 
 ```bash
-mpicxx -std=c++17 -O3 -o mpi_clique main.cpp
+mpicxx -std=c++17 -O3 -o mpi_clique src/main.cpp
 ```
 
 To clean build artifacts:
@@ -205,8 +205,8 @@ make test
 ### 2. Manual Graph Generation & Solver Run
 Generate a custom benchmark graph:
 ```bash
-# Syntax: python3 generate_graph.py <N> <density> <budget> <output_file>
-python3 generate_graph.py 100 0.3 500 sample_graph.txt
+# Syntax: python3 scripts/generate_graph.py <N> <density> <budget> <output_file>
+python3 scripts/generate_graph.py 100 0.3 500 sample_graph.txt
 ```
 
 Run the MPI solver on $P$ ranks:
@@ -228,7 +228,7 @@ Output format in `output.txt`:
 Validate the correctness of the generated clique solution:
 
 ```bash
-python3 verify_clique.py sample_graph.txt output.txt
+python3 scripts/verify_clique.py sample_graph.txt output.txt
 ```
 
 Checks performed:
